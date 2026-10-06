@@ -384,6 +384,8 @@ a { color: var(--turquoise-dark); }
 }
 
 .hero-collage img:first-child { grid-row: span 2; aspect-ratio: auto; object-fit: contain; background: #fff; padding: 10px; }
+/* Timbre de 1963 : le portrait est à droite, on cadre sur le visage */
+.hero-collage img:nth-child(2) { object-position: 82% center; }
 .hero-collage img:hover { transform: translateY(-5px); }
 
 .fact {
