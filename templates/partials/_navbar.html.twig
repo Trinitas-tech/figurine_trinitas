@@ -1,9 +1,9 @@
 {#
-    Barre de navigation
+    Barre de navigation (verre dépoli)
     - Non connecté : Logo, Accueil, S'inscrire, Se connecter
     - Connecté     : Logo, Accueil, Créer une figurine, Mon Profil, Déconnexion
 #}
-<nav class="navbar navbar-expand-lg navbar-dark bg-brand sticky-top shadow-sm">
+<nav class="navbar navbar-expand-lg navbar-light navbar-glass sticky-top">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center gap-2 fw-bold" href="{{ path('app_home') }}">
             <span class="brand-logo">F</span>
@@ -33,12 +33,12 @@
                     <li class="nav-item">
                         <a class="nav-link {{ app.current_route starts with 'app_account' ? 'active' }}" href="{{ path('app_account') }}">
                             <img class="nav-avatar me-1" src="{{ app.user.imageName }}" alt="" referrerpolicy="no-referrer"
-                                 onerror="this.onerror=null;this.src='https://ui-avatars.com/api/?name={{ app.user.fullName|url_encode }}&background=6f42c1&color=fff&size=64';">
+                                 onerror="this.onerror=null;this.src='https://ui-avatars.com/api/?name={{ app.user.fullName|url_encode }}&background=3f6fd8&color=fff&size=64';">
                             Mon Profil
                         </a>
                     </li>
                     <li class="nav-item ms-lg-2">
-                        <a class="btn btn-outline-light btn-sm" href="{{ path('app_logout') }}">
+                        <a class="btn btn-neo btn-sm" href="{{ path('app_logout') }}">
                             <i class="bi bi-box-arrow-right me-1"></i>Déconnexion
                         </a>
                     </li>
@@ -49,7 +49,7 @@
                         </a>
                     </li>
                     <li class="nav-item ms-lg-2">
-                        <a class="btn btn-light btn-sm text-brand fw-semibold" href="{{ path('app_login') }}">
+                        <a class="btn btn-brand btn-sm" href="{{ path('app_login') }}">
                             <i class="bi bi-box-arrow-in-right me-1"></i>Se connecter
                         </a>
                     </li>
