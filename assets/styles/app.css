@@ -383,7 +383,7 @@ a { color: var(--turquoise-dark); }
     transition: transform 0.3s ease;
 }
 
-.hero-collage img:first-child { grid-row: span 2; aspect-ratio: auto; }
+.hero-collage img:first-child { grid-row: span 2; aspect-ratio: auto; object-fit: contain; background: #fff; padding: 10px; }
 .hero-collage img:hover { transform: translateY(-5px); }
 
 .fact {
