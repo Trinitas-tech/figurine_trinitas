@@ -1,0 +1,18 @@
+{#
+    Formulaire partagé par create.html.twig et edit.html.twig
+    Variables : form, button_label (optionnel), cancel_path (optionnel)
+#}
+{{ form_start(form) }}
+    {{ form_row(form.title) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.imageName) }}
+
+    <div class="d-flex gap-2 mt-4">
+        <button class="btn btn-brand" type="submit">
+            <i class="bi bi-check-lg me-1"></i>{{ button_label|default('Enregistrer') }}
+        </button>
+        <a class="btn btn-outline-secondary" href="{{ cancel_path|default(path('app_figurine_index')) }}">
+            <i class="bi bi-arrow-left me-1"></i>Retour
+        </a>
+    </div>
+{{ form_end(form) }}

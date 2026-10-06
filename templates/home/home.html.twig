@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil - FigurineVie{% endblock %}
+
+{% block body %}
+    {# ---------- Bandeau principal ---------- #}
+    <section class="home-hero">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <span class="badge rounded-pill text-bg-light text-brand mb-3">Communauté de collectionneurs</span>
+                    <h1 class="display-4 fw-bold">Donnez vie à votre collection de figurines</h1>
+                    <p class="lead mt-3">
+                        FigurineVie est l'endroit où partager les photos de vos figurines,
+                        découvrir les pièces des autres collectionneurs et organiser votre vitrine en ligne.
+                    </p>
+                    <div class="d-flex flex-wrap gap-2 mt-4">
+                        {% if app.user %}
+                            <a class="btn btn-light btn-lg text-brand fw-semibold" href="{{ path('app_figurine_index') }}">
+                                <i class="bi bi-grid-3x3-gap me-1"></i>Voir les figurines
+                            </a>
+                            <a class="btn btn-outline-light btn-lg" href="{{ path('app_figurine_create') }}">
+                                <i class="bi bi-plus-circle me-1"></i>Ajouter une figurine
+                            </a>
+                        {% else %}
+                            <a class="btn btn-light btn-lg text-brand fw-semibold" href="{{ path('app_register') }}">
+                                <i class="bi bi-person-plus me-1"></i>Rejoindre la communauté
+                            </a>
+                            <a class="btn btn-outline-light btn-lg" href="{{ path('app_login') }}">
+                                <i class="bi bi-box-arrow-in-right me-1"></i>Se connecter
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-collage">
+                        <img src="https://images.unsplash.com/photo-1608889825103-eb5ed706fc64?auto=format&fit=crop&w=700&q=80" alt="Figurines Dark Vador et stormtroopers" referrerpolicy="no-referrer">
+                        <img src="https://images.unsplash.com/photo-1608889476561-6242cfdbf622?auto=format&fit=crop&w=600&q=80" alt="Figurines Spider-Man, Iron Man et Captain America" referrerpolicy="no-referrer">
+                        <img src="https://images.unsplash.com/photo-1531259683007-016a7b628fc3?auto=format&fit=crop&w=600&q=80" alt="Figurine Batman" referrerpolicy="no-referrer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# ---------- Comment ça marche ---------- #}
+    <section class="container py-5">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Comment ça marche ?</h2>
+            <p class="text-secondary">Trois étapes pour mettre votre collection en valeur.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="feature-card p-4">
+                    <div class="feature-icon mb-3"><i class="bi bi-person-plus"></i></div>
+                    <h3 class="h5">1. Créez votre compte</h3>
+                    <p class="text-secondary mb-0">Inscrivez-vous en quelques secondes avec votre email et une photo de profil.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card p-4">
+                    <div class="feature-icon mb-3"><i class="bi bi-camera"></i></div>
+                    <h3 class="h5">2. Partagez vos figurines</h3>
+                    <p class="text-secondary mb-0">Ajoutez une photo, un titre et une description pour chaque pièce de votre collection.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card p-4">
+                    <div class="feature-icon mb-3"><i class="bi bi-collection"></i></div>
+                    <h3 class="h5">3. Explorez la communauté</h3>
+                    <p class="text-secondary mb-0">Parcourez la galerie des membres et gérez vos propres figurines à tout moment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# ---------- Aperçu de la galerie ---------- #}
+    <section class="container pb-5">
+        <div class="d-flex flex-wrap justify-content-between align-items-end gap-2 mb-3">
+            <div>
+                <h2 class="fw-bold mb-1">Un aperçu de la galerie</h2>
+                <p class="text-secondary mb-0">Star Wars, Marvel, Pokémon, Ghibli... toutes les collections sont les bienvenues.</p>
+            </div>
+            {% if app.user %}
+                <a class="btn btn-outline-brand" href="{{ path('app_figurine_index') }}">Voir toutes les figurines</a>
+            {% else %}
+                <a class="btn btn-outline-brand" href="{{ path('app_login') }}">Se connecter pour tout voir</a>
+            {% endif %}
+        </div>
+        <div class="home-strip">
+            <img src="https://images.unsplash.com/photo-1609372332255-611485350f25?auto=format&fit=crop&w=400&q=70" alt="Figurine Pikachu" loading="lazy" referrerpolicy="no-referrer">
+            <img src="https://images.unsplash.com/photo-1601814933824-fd0b574dd592?auto=format&fit=crop&w=400&q=70" alt="Figurine Grogu" loading="lazy" referrerpolicy="no-referrer">
+            <img src="https://images.unsplash.com/photo-1608889335941-32ac5f2041b9?auto=format&fit=crop&w=400&q=70" alt="Figurine Deadpool" loading="lazy" referrerpolicy="no-referrer">
+            <img src="https://images.unsplash.com/photo-1559535332-db9971090158?auto=format&fit=crop&w=400&q=70" alt="Figurine Groot" loading="lazy" referrerpolicy="no-referrer">
+            <img src="https://images.unsplash.com/photo-1593085512500-5d55148d6f0d?auto=format&fit=crop&w=400&q=70" alt="Figurine Minion" loading="lazy" referrerpolicy="no-referrer">
+            <img src="https://images.unsplash.com/photo-1611457194403-d3aca4cf9d11?auto=format&fit=crop&w=400&q=70" alt="Figurine Totoro" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+    </section>
+{% endblock %}

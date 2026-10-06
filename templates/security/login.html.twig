@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion - FigurineVie{% endblock %}
+
+{% block body %}
+    <section class="container py-4 form-page form-page-narrow">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-md-5">
+                <h1 class="h2 mb-1">Se connecter</h1>
+                <p class="text-secondary mb-4">Heureux de vous revoir !</p>
+
+                {# Erreur d'authentification (identifiants invalides...) en rouge #}
+                {% if error %}
+                    <div class="alert alert-danger" role="alert">
+                        <i class="bi bi-exclamation-triangle-fill me-2"></i>{{ error.messageKey|trans(error.messageData, 'security') }}
+                    </div>
+                {% endif %}
+
+                <form method="post">
+                    <div class="mb-3">
+                        <label class="form-label" for="username">Email</label>
+                        <input class="form-control" type="email" value="{{ last_username }}" name="_username" id="username" autocomplete="email" required autofocus>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="password">Mot de passe</label>
+                        <input class="form-control" type="password" name="_password" id="password" autocomplete="current-password" required>
+                    </div>
+
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                    <button class="btn btn-brand w-100 mt-2" type="submit">
+                        <i class="bi bi-box-arrow-in-right me-1"></i>Connexion
+                    </button>
+                </form>
+
+                <p class="text-center small text-secondary mt-4 mb-0">
+                    Pas encore de compte ? <a href="{{ path('app_register') }}">S'inscrire</a>
+                </p>
+            </div>
+        </div>
+    </section>
+{% endblock %}

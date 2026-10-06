@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}FigurineVie{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="FigurineVie : partagez et organisez les photos de vos figurines.">
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><rect width=%22128%22 height=%22128%22 rx=%2228%22 fill=%22%236f42c1%22/><text y=%2288%22 x=%2230%22 font-size=%2272%22 font-family=%22Arial%22 font-weight=%22bold%22 fill=%22white%22>F</text></svg>">
+
+        {% block stylesheets %}
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+        {% endblock %}
+
+        {% block javascripts %}
+            {% block importmap %}{{ importmap('app') }}{% endblock %}
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" defer></script>
+        {% endblock %}
+    </head>
+    <body class="d-flex flex-column min-vh-100">
+        {# Barre de navigation : contenu différent selon que l'utilisateur est connecté ou non #}
+        {% include 'partials/_navbar.html.twig' %}
+
+        <main class="flex-grow-1">
+            {# Messages flash : success (vert), danger (rouge), info (bleu) #}
+            {% for label, messages in app.flashes %}
+                <div class="container pt-3">
+                    {% for message in messages %}
+                        <div class="alert alert-{{ label }} alert-dismissible fade show shadow-sm" role="alert">
+                            {% if label == 'success' %}<i class="bi bi-check-circle-fill me-2"></i>
+                            {% elseif label == 'danger' %}<i class="bi bi-exclamation-triangle-fill me-2"></i>
+                            {% else %}<i class="bi bi-info-circle-fill me-2"></i>{% endif %}
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fermer"></button>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+
+            {% block body %}{% endblock %}
+        </main>
+
+        {% include 'partials/_footer.html.twig' %}
+    </body>
+</html>

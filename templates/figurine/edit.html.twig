@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier {{ figurine.title|u.truncate(30, '…') }} - FigurineVie{% endblock %}
+
+{% block body %}
+    <section class="container py-4 form-page">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-md-5">
+                <h1 class="h2 mb-1">Modifier la figurine</h1>
+                <p class="text-secondary mb-4">Créée le {{ figurine.createdAt|date('d/m/Y') }}, dernière modification {{ figurine.updatedAt|ago }}.</p>
+
+                <div class="text-center mb-4">
+                    <img class="figurine-edit-preview" src="{{ figurine.imageName }}" alt="{{ figurine.title }}" referrerpolicy="no-referrer">
+                </div>
+
+                {% include 'figurine/_form.html.twig' with {
+                    button_label: 'Enregistrer les modifications',
+                    cancel_path: path('app_figurine_show', {id: figurine.id})
+                } %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ figurine.title|u.truncate(30, '…') }} - FigurineVie{% endblock %}
+
+{% block body %}
+    <section class="container py-4">
+        <nav aria-label="breadcrumb" class="mb-3">
+            <ol class="breadcrumb small mb-0">
+                <li class="breadcrumb-item"><a href="{{ path('app_figurine_index') }}">Figurines</a></li>
+                {# Titre court (30 caractères) dans le fil d'Ariane #}
+                <li class="breadcrumb-item active" aria-current="page">{{ figurine.title|u.truncate(30, '…') }}</li>
+            </ol>
+        </nav>
+
+        <div class="row g-4 justify-content-center">
+            <div class="col-lg-7 text-center">
+                {# Image en taille réelle, limitée à 600px de largeur #}
+                <img class="figurine-detail-image" src="{{ figurine.imageName }}" alt="{{ figurine.title }}" referrerpolicy="no-referrer">
+            </div>
+
+            <div class="col-lg-5">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <h1 class="h3 mb-3">{{ figurine.title }}</h1>
+
+                        {% if figurine.description %}
+                            <p class="text-body-secondary figurine-description">{{ figurine.description|nl2br }}</p>
+                        {% else %}
+                            <p class="text-secondary fst-italic">Aucune description.</p>
+                        {% endif %}
+
+                        <hr>
+
+                        <dl class="row small mb-4">
+                            <dt class="col-5"><i class="bi bi-person me-1"></i>Auteur</dt>
+                            <dd class="col-7 d-flex align-items-center gap-2">
+                                <img class="author-avatar" src="{{ figurine.user.imageName }}" alt="" referrerpolicy="no-referrer"
+                                     onerror="this.onerror=null;this.src='https://ui-avatars.com/api/?name={{ figurine.user.fullName|url_encode }}&background=6f42c1&color=fff&size=64';">
+                                <span>{{ figurine.user.firstname }} {{ figurine.user.lastname }}</span>
+                            </dd>
+                            <dt class="col-5"><i class="bi bi-calendar-plus me-1"></i>Créée le</dt>
+                            <dd class="col-7">{{ figurine.createdAt|date('d/m/Y à H:i') }}</dd>
+                            <dt class="col-5"><i class="bi bi-pencil-square me-1"></i>Modifiée le</dt>
+                            <dd class="col-7">{{ figurine.updatedAt|date('d/m/Y à H:i') }}</dd>
+                        </dl>
+
+                        <div class="d-flex flex-wrap gap-2">
+                            <a class="btn btn-outline-secondary" href="{{ path('app_figurine_index') }}">
+                                <i class="bi bi-arrow-left me-1"></i>Retour
+                            </a>
+                            {# Boutons réservés au propriétaire (règle identique au FigurineVoter) #}
+                            {% if is_granted('FIGURINE_EDIT', figurine) %}
+                                <a class="btn btn-warning" href="{{ path('app_figurine_edit', {id: figurine.id}) }}">
+                                    <i class="bi bi-pencil me-1"></i>Éditer
+                                </a>
+                                <form method="post" action="{{ path('app_figurine_delete', {id: figurine.id}) }}"
+                                      onsubmit="return confirm('Voulez-vous vraiment supprimer la figurine « {{ figurine.title|e('js') }} » ? Cette action est irréversible.');">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete_figurine_' ~ figurine.id) }}">
+                                    <button class="btn btn-danger" type="submit">
+                                        <i class="bi bi-trash me-1"></i>Supprimer
+                                    </button>
+                                </form>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

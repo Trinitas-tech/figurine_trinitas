@@ -1,0 +1,293 @@
+/* =========================================================
+   FigurineVie - feuille de style principale
+   Complète Bootstrap 5 (chargé via CDN dans base.html.twig)
+   ========================================================= */
+
+:root {
+    --brand: #6f42c1;          /* violet principal */
+    --brand-dark: #5a32a3;
+    --brand-light: #efe9fb;
+    --accent: #ff7a59;         /* orange corail pour les touches d'accent */
+    --surface: #f6f5fa;
+}
+
+body {
+    background-color: var(--surface);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ---------- Couleurs de marque ---------- */
+.bg-brand { background-color: var(--brand) !important; }
+.text-brand { color: var(--brand) !important; }
+
+.btn-brand {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: var(--brand);
+    --bs-btn-border-color: var(--brand);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--brand-dark);
+    --bs-btn-hover-border-color: var(--brand-dark);
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: var(--brand-dark);
+    --bs-btn-active-border-color: var(--brand-dark);
+    --bs-btn-focus-shadow-rgb: 111, 66, 193;
+}
+
+.btn-outline-brand {
+    --bs-btn-color: var(--brand);
+    --bs-btn-border-color: var(--brand);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--brand);
+    --bs-btn-hover-border-color: var(--brand);
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: var(--brand-dark);
+    --bs-btn-active-border-color: var(--brand-dark);
+}
+
+/* ---------- Navbar / logo ---------- */
+.brand-logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--accent), #ffb199);
+    color: #fff;
+    font-weight: 800;
+    font-size: 1.1rem;
+}
+
+.brand-logo-sm {
+    width: 28px;
+    height: 28px;
+    font-size: 0.9rem;
+}
+
+.navbar .nav-link.active {
+    font-weight: 600;
+}
+
+.nav-avatar,
+.author-avatar {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+/* ---------- Page d'accueil ---------- */
+.home-hero {
+    background: linear-gradient(135deg, #2b1d4f 0%, var(--brand) 60%, #8e5be8 100%);
+    color: #fff;
+    padding: 5rem 0;
+    overflow: hidden;
+}
+
+.home-hero .lead {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.hero-collage {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.hero-collage img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: 1rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+    transition: transform 0.3s ease;
+}
+
+.hero-collage img:first-child {
+    grid-row: span 2;
+    aspect-ratio: 4 / 7;
+}
+
+.hero-collage img:hover {
+    transform: translateY(-6px) rotate(-1deg);
+}
+
+.feature-card {
+    height: 100%;
+    border: 0;
+    border-radius: 1rem;
+    background: #fff;
+    box-shadow: 0 6px 18px rgba(43, 29, 79, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(43, 29, 79, 0.14);
+}
+
+.feature-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--brand);
+    background: var(--brand-light);
+}
+
+.home-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 0.75rem;
+}
+
+.home-strip img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 0.75rem;
+}
+
+/* ---------- Liste des figurines (grille masonry) ---------- */
+.figurine-grid {
+    column-count: 1;
+    column-gap: 1.25rem;
+}
+
+@media (min-width: 576px) { .figurine-grid { column-count: 2; } }
+@media (min-width: 768px) { .figurine-grid { column-count: 3; } }
+@media (min-width: 1200px) { .figurine-grid { column-count: 4; } }
+
+.figurine-card {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 1.25rem;
+    break-inside: avoid;
+    background: #fff;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(43, 29, 79, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.figurine-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(43, 29, 79, 0.16);
+}
+
+.figurine-card-image {
+    display: block;
+    background: var(--brand-light);
+}
+
+/* Images redimensionnées : largeur de colonne (~250px), hauteur libre */
+.figurine-card-image img {
+    display: block;
+    width: 100%;
+    max-width: 250px;
+    margin: 0 auto;
+    height: auto;
+}
+
+@media (min-width: 576px) {
+    .figurine-card-image img { max-width: 100%; }
+}
+
+.figurine-card-body {
+    padding: 0.9rem 1rem 1rem;
+}
+
+.stretched-link-title {
+    color: #212529;
+    text-decoration: none;
+}
+
+.stretched-link-title:hover {
+    color: var(--brand);
+}
+
+/* ---------- Détail d'une figurine ---------- */
+.figurine-detail-image {
+    width: 100%;
+    max-width: 600px;   /* taille réelle, 600px de largeur maximum */
+    height: auto;
+    border-radius: 1rem;
+    box-shadow: 0 16px 36px rgba(43, 29, 79, 0.18);
+}
+
+.figurine-description {
+    white-space: pre-line;
+}
+
+.figurine-edit-preview {
+    max-width: 260px;
+    max-height: 260px;
+    border-radius: 0.75rem;
+    object-fit: cover;
+}
+
+/* ---------- Formulaires ---------- */
+.form-page {
+    max-width: 760px;
+}
+
+.form-page-narrow {
+    max-width: 520px;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--brand);
+    box-shadow: 0 0 0 0.25rem rgba(111, 66, 193, 0.2);
+}
+
+/* ---------- Profil ---------- */
+.profile-card {
+    overflow: hidden;
+    border-radius: 1rem;
+}
+
+.profile-banner {
+    height: 120px;
+    background: linear-gradient(135deg, #2b1d4f 0%, var(--brand) 60%, #8e5be8 100%);
+}
+
+.profile-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #fff;
+    box-shadow: 0 8px 24px rgba(43, 29, 79, 0.2);
+    margin-top: -90px;
+    background: #fff;
+}
+
+.profile-figurines {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 0.75rem;
+}
+
+.profile-figurines img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 0.75rem;
+    transition: transform 0.2s ease;
+}
+
+.profile-figurines a:hover img {
+    transform: scale(1.04);
+}
+
+/* ---------- Pied de page ---------- */
+.footer {
+    background: #fff;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+}

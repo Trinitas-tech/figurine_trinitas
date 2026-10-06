@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier mon profil - FigurineVie{% endblock %}
+
+{% block body %}
+    <section class="container py-4 form-page form-page-narrow">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-md-5">
+                <h1 class="h2 mb-1">Modifier mon profil</h1>
+                <p class="text-secondary mb-4">Vous pouvez changer votre image, votre prénom et votre nom.</p>
+
+                <div class="text-center mb-4">
+                    <img class="profile-avatar" src="{{ user.imageName }}" alt="{{ user.firstname }} {{ user.lastname }}" referrerpolicy="no-referrer"
+                         onerror="this.onerror=null;this.src='https://ui-avatars.com/api/?name={{ user.fullName|url_encode }}&background=6f42c1&color=fff&size=300';">
+                </div>
+
+                {{ form_start(form) }}
+                    <div class="row">
+                        <div class="col-md-6">{{ form_row(form.firstname) }}</div>
+                        <div class="col-md-6">{{ form_row(form.lastname) }}</div>
+                    </div>
+                    {{ form_row(form.imageName) }}
+
+                    <div class="d-flex gap-2 mt-4">
+                        <button class="btn btn-brand" type="submit">
+                            <i class="bi bi-check-lg me-1"></i>Enregistrer
+                        </button>
+                        <a class="btn btn-outline-secondary" href="{{ path('app_account') }}">
+                            <i class="bi bi-arrow-left me-1"></i>Retour
+                        </a>
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon profil - FigurineVie{% endblock %}
+
+{% block body %}
+    <section class="container py-4">
+        <div class="card border-0 shadow-sm profile-card">
+            <div class="profile-banner"></div>
+            <div class="card-body p-4 p-md-5">
+                <div class="d-flex flex-column flex-md-row align-items-center align-items-md-end gap-4">
+                    <img class="profile-avatar" src="{{ user.imageName }}" alt="{{ user.firstname }} {{ user.lastname }}" referrerpolicy="no-referrer"
+                         onerror="this.onerror=null;this.src='https://ui-avatars.com/api/?name={{ user.fullName|url_encode }}&background=6f42c1&color=fff&size=300';">
+                    <div class="flex-grow-1 text-center text-md-start">
+                        <h1 class="h2 mb-1">{{ user.firstname }} {{ user.lastname }}</h1>
+                        <p class="text-secondary mb-1"><i class="bi bi-envelope me-1"></i>{{ user.email }}</p>
+                        <p class="text-secondary mb-0">
+                            <i class="bi bi-calendar-check me-1"></i>Membre depuis le {{ user.createdAt|date('d/m/Y') }}
+                            <span class="text-body-tertiary">({{ user.createdAt|ago }})</span>
+                        </p>
+                    </div>
+                    <a class="btn btn-brand" href="{{ path('app_account_edit') }}">
+                        <i class="bi bi-pencil me-1"></i>Éditer
+                    </a>
+                </div>
+
+                <hr class="my-4">
+
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+                    <h2 class="h5 mb-0">Mes figurines <span class="badge rounded-pill text-bg-light border">{{ user.figurines|length }}</span></h2>
+                    <a class="btn btn-sm btn-outline-secondary" href="{{ path('app_figurine_create') }}">
+                        <i class="bi bi-plus-circle me-1"></i>Ajouter
+                    </a>
+                </div>
+
+                {% if user.figurines is empty %}
+                    <p class="text-secondary mt-3 mb-0">Vous n'avez encore partagé aucune figurine.</p>
+                {% else %}
+                    <div class="profile-figurines mt-3">
+                        {% for figurine in user.figurines %}
+                            <a href="{{ path('app_figurine_show', {id: figurine.id}) }}" title="{{ figurine.title }}">
+                                <img src="{{ figurine.imageName }}" alt="{{ figurine.title }}" loading="lazy" referrerpolicy="no-referrer">
+                            </a>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

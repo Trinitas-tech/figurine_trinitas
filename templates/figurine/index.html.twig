@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Figurines - FigurineVie{% endblock %}
+
+{% block body %}
+    <section class="container py-4">
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+            <div>
+                <h1 class="h2 mb-1">Toutes les figurines</h1>
+                <p class="text-secondary mb-0">{{ figurines|length }} figurine{{ figurines|length > 1 ? 's' }} partagée{{ figurines|length > 1 ? 's' }} par la communauté</p>
+            </div>
+            <a class="btn btn-brand" href="{{ path('app_figurine_create') }}">
+                <i class="bi bi-plus-circle me-1"></i>Créer une figurine
+            </a>
+        </div>
+
+        {% if figurines is empty %}
+            <div class="text-center py-5 text-secondary">
+                <i class="bi bi-box-seam display-4 d-block mb-3"></i>
+                <p class="mb-3">Aucune figurine pour le moment. Soyez le premier à partager la vôtre !</p>
+                <a class="btn btn-brand" href="{{ path('app_figurine_create') }}">Créer une figurine</a>
+            </div>
+        {% else %}
+            {# Grille de type masonry : les cartes se répartissent en colonnes #}
+            <div class="figurine-grid">
+                {% for figurine in figurines %}
+                    <article class="figurine-card">
+                        <a href="{{ path('app_figurine_show', {id: figurine.id}) }}" class="figurine-card-image">
+                            <img src="{{ figurine.imageName }}" alt="{{ figurine.title }}" loading="lazy" referrerpolicy="no-referrer">
+                        </a>
+                        <div class="figurine-card-body">
+                            <h2 class="h6 mb-1">
+                                <a class="stretched-link-title" href="{{ path('app_figurine_show', {id: figurine.id}) }}" title="{{ figurine.title }}">
+                                    {# Titre limité à 30 caractères dans la liste #}
+                                    {{ figurine.title|u.truncate(30, '…') }}
+                                </a>
+                            </h2>
+                            <p class="small text-secondary mb-1">
+                                <i class="bi bi-clock me-1"></i>Publiée {{ figurine.createdAt|ago }}
+                            </p>
+                            <p class="small mb-0 d-flex align-items-center gap-2">
+                                <img class="author-avatar" src="{{ figurine.user.imageName }}" alt="" referrerpolicy="no-referrer"
+                                     onerror="this.onerror=null;this.src='https://ui-avatars.com/api/?name={{ figurine.user.fullName|url_encode }}&background=6f42c1&color=fff&size=64';">
+                                <span>{{ figurine.user.firstname }} {{ figurine.user.lastname }}</span>
+                            </p>
+                        </div>
+                    </article>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </section>
+{% endblock %}
