@@ -33,6 +33,19 @@ du projet et peut être importé directement dans phpMyAdmin ou via :
 mysql -u root figurine_trinitas_db < figurine_trinitas_db.sql
 ```
 
+## Emails de vérification (Mailtrap)
+
+À l'inscription, un email contenant un lien signé est envoyé (bundle `symfonycasts/verify-email-bundle`).
+En développement les emails sont capturés par Mailtrap : créez un fichier `.env.local` (non versionné) avec
+le DSN SMTP de votre inbox (Mailtrap > Email Testing > Inbox > SMTP Settings) :
+
+```dotenv
+MAILER_DSN="smtp://USERNAME:PASSWORD@sandbox.smtp.mailtrap.io:2525"
+```
+
+Les emails sont routés en `sync` dans `config/packages/messenger.yaml`, aucun worker n'est nécessaire.
+Tester la configuration : `php bin/console mailer:test test@exemple.be`.
+
 ## Comptes de démonstration
 
 | Email                     | Mot de passe   | Figurines |

@@ -1,0 +1,21 @@
+{# Email de confirmation d'adresse envoyé à l'inscription (reçu dans Mailtrap en développement) #}
+<div style="font-family: Poppins, Arial, sans-serif; color: #10283d; max-width: 560px; margin: 0 auto; padding: 24px;">
+    <h1 style="color: #07182f; font-size: 24px;">Bienvenue sur FigurineVie, {{ user.firstname }} !</h1>
+
+    <p>Merci de votre inscription. Pour activer votre compte, confirmez votre adresse email en cliquant sur le bouton ci-dessous.</p>
+
+    <p style="margin: 28px 0;">
+        <a href="{{ signedUrl|raw }}"
+           style="display: inline-block; padding: 14px 26px; border-radius: 999px; background: #def442; color: #07182f; font-weight: bold; text-decoration: none;">
+            Confirmer mon adresse email
+        </a>
+    </p>
+
+    <p style="color: #557084; font-size: 14px;">{{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}</p>
+
+    <p style="color: #557084; font-size: 14px;">Si le bouton ne fonctionne pas, copiez ce lien dans votre navigateur :<br>
+        <a href="{{ signedUrl|raw }}" style="color: #087f83; word-break: break-all;">{{ signedUrl }}</a>
+    </p>
+
+    <p>À bientôt,<br>L'équipe FigurineVie</p>
+</div>

@@ -12,7 +12,14 @@
                          onerror="this.onerror=null;this.src='https://ui-avatars.com/api/?name={{ user.fullName|url_encode }}&background=08a9ad&color=fff&size=300';">
                     <div class="flex-grow-1 text-center text-md-start">
                         <h1 class="h2 mb-1">{{ user.firstname }} {{ user.lastname }}</h1>
-                        <p class="text-secondary mb-1"><i class="bi bi-envelope me-1"></i>{{ user.email }}</p>
+                        <p class="text-secondary mb-1">
+                            <i class="bi bi-envelope me-1"></i>{{ user.email }}
+                            {% if user.isVerified %}
+                                <span class="badge rounded-pill text-bg-light ms-1"><i class="bi bi-patch-check-fill me-1"></i>Email vérifié</span>
+                            {% else %}
+                                <span class="badge rounded-pill text-bg-light ms-1"><i class="bi bi-hourglass-split me-1"></i>Email non vérifié</span>
+                            {% endif %}
+                        </p>
                         <p class="text-secondary mb-0">
                             <i class="bi bi-calendar-check me-1"></i>Membre depuis le {{ user.createdAt|date('d/m/Y') }}
                             <span class="text-body-tertiary">({{ user.createdAt|ago }})</span>
