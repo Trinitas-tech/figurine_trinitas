@@ -11,6 +11,10 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 /**
  * Jeu de données de démonstration : 3 utilisateurs et 14 figurines.
  *
+ * Les figurines illustrent les lieux touristiques et les grandes figures
+ * de l'histoire du Burundi. Les photos proviennent de Wikimedia Commons
+ * (licences Creative Commons ou domaine public, crédits dans le README).
+ *
  * Chargement : php bin/console doctrine:fixtures:load
  * Mot de passe de tous les comptes : Password123!
  */
@@ -18,6 +22,9 @@ class AppFixtures extends Fixture
 {
     /** Mot de passe en clair commun aux comptes de démonstration */
     private const DEMO_PASSWORD = 'Password123!';
+
+    /** Base des URL d'images Wikimedia Commons (redirige vers le fichier redimensionné) */
+    private const COMMONS = 'https://commons.wikimedia.org/wiki/Special:FilePath/';
 
     public function __construct(private readonly UserPasswordHasherInterface $passwordHasher)
     {
@@ -71,27 +78,30 @@ class AppFixtures extends Fixture
     private function loadFigurines(ObjectManager $manager, array $users): void
     {
         $figurinesData = [
-            // [titre, description, image, propriétaire]
-            ['Dark Vador et ses stormtroopers', "Figurines Hot Toys à l'échelle 1/6. Dark Vador surveille deux stormtroopers en pleine discussion. Photo prise en extérieur pour profiter de la lumière naturelle.", 'https://images.unsplash.com/photo-1608889825103-eb5ed706fc64?auto=format&fit=crop&w=900&q=80', 'trinitas'],
-            ['Stormtrooper perdu dans le désert', "Minifigurine LEGO Stormtrooper laissant ses traces dans le sable. Une mise en scène toute simple mais que j'adore.", 'https://images.unsplash.com/photo-1472457897821-70d3819a0e24?auto=format&fit=crop&w=900&q=80', 'trinitas'],
-            ['Batman - The Dark Knight', 'Figurine S.H.Figuarts de Batman, version The Dark Knight. Éclairage sombre pour coller à l\'ambiance de Gotham.', 'https://images.unsplash.com/photo-1531259683007-016a7b628fc3?auto=format&fit=crop&w=900&q=80', 'lucas'],
-            ['Baby Groot dans le jardin', 'Petit Groot en résine, environ 15 cm. Il a trouvé sa place au milieu des plantes du jardin.', 'https://images.unsplash.com/photo-1559535332-db9971090158?auto=format&fit=crop&w=900&q=80', 'amina'],
-            ['Minion Kevin', "Figurine Minion articulée, édition Moi, Moche et Méchant 3. Toujours de bonne humeur sur mon bureau.", 'https://images.unsplash.com/photo-1593085512500-5d55148d6f0d?auto=format&fit=crop&w=900&q=80', 'amina'],
-            ['Grogu - The Mandalorian', "Peluche-figurine de Grogu (Baby Yoda) avec sa petite tunique. Un indispensable pour tout fan de The Mandalorian.", 'https://images.unsplash.com/photo-1601814933824-fd0b574dd592?auto=format&fit=crop&w=900&q=80', 'lucas'],
-            ['Deadpool en garde', 'Figurine Deadpool Marvel Legends, katana en main. Fond noir pour faire ressortir le rouge du costume.', 'https://images.unsplash.com/photo-1608889175123-8ee362201f81?auto=format&fit=crop&w=900&q=80', 'trinitas'],
-            ['Deadpool prend un selfie', "Une seconde figurine Deadpool, version chibi avec sa perche à selfie. Impossible de résister à sa tête.", 'https://images.unsplash.com/photo-1608889335941-32ac5f2041b9?auto=format&fit=crop&w=900&q=80', 'trinitas'],
-            ['Pikachu géant', 'Grande figurine Pikachu photographiée lors d\'une convention. Pas la mienne, mais elle méritait une photo !', 'https://images.unsplash.com/photo-1609372332255-611485350f25?auto=format&fit=crop&w=900&q=80', 'amina'],
-            ['Totoro', 'Figurine Totoro en vinyle souple, acquise lors d\'un voyage au Japon. Studio Ghibli pour toujours.', 'https://images.unsplash.com/photo-1611457194403-d3aca4cf9d11?auto=format&fit=crop&w=900&q=80', 'amina'],
-            ['Spider-Man, Iron Man et Captain America', 'Trio de figurines Marvel en version chibi. Spider-Man est clairement la star de la collection.', 'https://images.unsplash.com/photo-1608889476561-6242cfdbf622?auto=format&fit=crop&w=900&q=80', 'lucas'],
-            ['Stormtrooper à dos de tortue', 'Mise en scène humoristique : un stormtrooper qui part en patrouille sur une tortue. Photo macro dans le jardin.', 'https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?auto=format&fit=crop&w=900&q=80', 'lucas'],
-            ['Abbey Road version LEGO', 'Hommage à la célèbre pochette des Beatles avec des minifigurines LEGO, photographié sur un vrai passage piéton.', 'https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?auto=format&fit=crop&w=900&q=80', 'amina'],
-            ['Grogu en forêt', null, 'https://images.unsplash.com/photo-1618336753974-aae8e04506aa?auto=format&fit=crop&w=900&q=80', 'trinitas'],
+            // [titre, description, fichier Commons ou URL complète, propriétaire]
+            ['Chutes de la Karera', "Les chutes de la Karera, dans la province de Rutana, forment un ensemble de six cascades au cœur d'une forêt luxuriante. Site naturel protégé et l'une des plus belles excursions du sud du pays.", 'Chutes_de_Karera_01.jpg', 'trinitas'],
+            ['Plage du lac Tanganyika', "Paillotes et sable fin au bord du lac Tanganyika, à quelques minutes de Bujumbura. Le deuxième lac le plus profond du monde est le lieu de détente favori des habitants de la capitale.", 'Beach_in_Bujumbura.jpg', 'amina'],
+            ['Bujumbura vue du lac', "La ville de Bujumbura s'étire entre les rives du lac Tanganyika et les collines. Au loin, les montagnes du Congo ferment l'horizon.", 'Bujumbura_%26_Lake_Tanganyika.JPG', 'lucas'],
+            ['Source du Nil à Rutovu', "La source la plus méridionale du Nil se trouve à Rutovu, dans la province de Bururi. Une pyramide y a été érigée en 1938 par l'explorateur Burkhart Waldecker.", 'Source_du_Nill.jpg', 'trinitas'],
+            ['Hippopotames de la Rusizi', "Le parc national de la Rusizi, aux portes de Bujumbura, abrite hippopotames, crocodiles et de nombreux oiseaux dans le delta de la rivière Rusizi.", 'Rusizi_NP_hippopotamus.jpg', 'lucas'],
+            ['Cathédrale de Gitega', "Gitega, capitale politique du Burundi depuis 2019, abrite le Musée national et cette cathédrale en briques rouges typiques de la région.", 'Gitega_Church.JPG', 'amina'],
+            ['Théiers de Teza', "Les plantations de thé de Teza, sur les hauteurs de la Kibira, offrent un paysage de collines d'un vert intense. Le thé est l'une des principales exportations du pays.", 'Le_th%C3%A9_du_teza_%C3%A0_kibira.jpg', 'trinitas'],
+            ['Collines de Teza-Muramvya', "Entre Muramvya et la forêt de la Kibira, les collines cultivées descendent en terrasses vers la vallée. Le Burundi est surnommé le pays des mille collines.", 'Teza-Muramvya.jpg', 'amina'],
+            ['Mausolée du prince Rwagasore', "Sur la colline de Vugizo, à Bujumbura, le mausolée du prince Louis Rwagasore, héros de l'indépendance assassiné en 1961, domine la ville et le lac.", 'Prince_Rwagasore_Tomb_-_Flickr_-_Dave_Proffer.jpg', 'lucas'],
+            ['Pierre de Livingstone et Stanley', "À Mugere, cette pierre marque l'endroit où, selon la tradition, les explorateurs Livingstone et Stanley ont passé deux nuits en novembre 1871.", 'Livingstone_monument_burundi.jpg', 'trinitas'],
+            ['Paysage de Rutana', "Collines, champs et nuages au-dessus de la province de Rutana. Un exemple des paysages ruraux qui font la beauté du Burundi.", 'Burundi_Rutana.jpg', 'amina'],
+            ['Timbre Louis Rwagasore 1963', "Timbre du Royaume du Burundi émis en 1963 en hommage au prince Louis Rwagasore (1932-1961), Premier ministre et père de l'indépendance.", 'BDI_1963_MiNr0044A_pm_B002.jpg', 'lucas'],
+            ['Cathédrale Regina Mundi', "La cathédrale Regina Mundi de Bujumbura, avec son clocher élancé, est le principal édifice religieux de la ville.", 'Cath%C3%A9drale_Regina_Mundi_de_Bujumbura%2C_2006.jpg', 'amina'],
+            ['Melchior Ndadaye', "Melchior Ndadaye, premier président démocratiquement élu du Burundi en 1993, assassiné la même année. Il est célébré comme héros de la démocratie.", 'https://www.burundi-forum.org/wp-content/uploads/2019/10/bdi_burundi_ndadaye_2019.jpeg', 'trinitas'],
         ];
 
         // Les dates de création sont étalées dans le temps pour rendre le « il y a ... » plus parlant
         $daysAgo = count($figurinesData);
 
-        foreach ($figurinesData as [$title, $description, $imageName, $ownerKey]) {
+        foreach ($figurinesData as [$title, $description, $image, $ownerKey]) {
+            // Un simple nom de fichier est complété en URL Wikimedia Commons
+            $imageName = str_starts_with($image, 'http') ? $image : self::COMMONS . $image . '?width=900';
+
             $figurine = (new Figurine())
                 ->setTitle($title)
                 ->setDescription($description)

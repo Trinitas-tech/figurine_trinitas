@@ -88,6 +88,31 @@ mysql -u root figurine_trinitas_db < figurine_trinitas_db.sql
 - Validation : titre obligatoire (3 à 100 caractères, mot « spam » interdit), description optionnelle, URL d'image valide, email unique, mot de passe de 6 caractères minimum.
 - Messages flash : création / modification réussie (vert), suppression réussie (rouge), connexion « Bienvenue prénom » et inscription réussie (bleu), erreurs en rouge.
 
+## Crédits photos
+
+Les figurines de démonstration présentent des lieux touristiques et des figures historiques du Burundi.
+Les photos proviennent de Wikimedia Commons et sont utilisées selon leur licence :
+
+| Figurine | Fichier Commons | Auteur | Licence |
+|----------|-----------------|--------|---------|
+| Chutes de la Karera | Chutes_de_Karera_01.jpg | Kibengado | CC BY-SA 4.0 |
+| Plage du lac Tanganyika | Beach_in_Bujumbura.jpg | Macabe5387 | CC BY-SA 4.0 |
+| Bujumbura vue du lac | Bujumbura_&_Lake_Tanganyika.JPG | Andreas31 | CC BY-SA 3.0 |
+| Source du Nil à Rutovu | Source_du_Nill.jpg | Kibengado | CC BY-SA 4.0 |
+| Hippopotames de la Rusizi | Rusizi_NP_hippopotamus.jpg | Dave Proffer | CC BY 2.0 |
+| Cathédrale de Gitega | Gitega_Church.JPG | Teq | Domaine public |
+| Théiers de Teza | Le_thé_du_teza_à_kibira.jpg | Nzisabira Léopold | CC BY-SA 4.0 |
+| Collines de Teza-Muramvya | Teza-Muramvya.jpg | Jostemirongibiri | CC BY-SA 4.0 |
+| Mausolée du prince Rwagasore | Prince_Rwagasore_Tomb_-_Flickr_-_Dave_Proffer.jpg | Dave Proffer | CC BY 2.0 |
+| Pierre de Livingstone et Stanley | Livingstone_monument_burundi.jpg | inconnu | Domaine public |
+| Paysage de Rutana | Burundi_Rutana.jpg | Kat257 | CC BY-SA 4.0 |
+| Timbre Louis Rwagasore 1963 | BDI_1963_MiNr0044A_pm_B002.jpg | Poste du Royaume du Burundi | Domaine public |
+| Cathédrale Regina Mundi | Cathédrale_Regina_Mundi_de_Bujumbura,_2006.jpg | inconnu | Domaine public |
+| Statue du prince Rwagasore (accueil) | Statut_du_prince_Louis_Rwagasore.jpg | Arthur Nkunzimana | CC BY-SA 4.0 |
+
+Le portrait de Melchior Ndadaye provient de burundi-forum.org (archives Apollinaire Ndayikeze, 2019)
+et la carte du Burundi de img.magnific.com.
+
 ## Autres éléments
 
 - `App\Twig\AgoExtension` : filtre `ago` (« il y a 3 jours ») utilisé dans la liste des figurines.
