@@ -4,9 +4,10 @@
 
 {% block body %}
     <section class="container py-4">
-        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+        <div class="page-head d-flex flex-wrap justify-content-between align-items-end gap-3 mb-4">
             <div>
-                <h1 class="h2 mb-1">Toutes les figurines</h1>
+                <p class="eyebrow">Galerie de la communauté</p>
+                <h1 class="mb-2">Toutes les figurines</h1>
                 <p class="text-secondary mb-0">{{ figurines|length }} figurine{{ figurines|length > 1 ? 's' }} partagée{{ figurines|length > 1 ? 's' }} par la communauté</p>
             </div>
             <a class="btn btn-brand" href="{{ path('app_figurine_create') }}">
@@ -15,7 +16,7 @@
         </div>
 
         {% if figurines is empty %}
-            <div class="text-center py-5 text-secondary">
+            <div class="card text-center py-5 px-3 text-secondary">
                 <i class="bi bi-box-seam display-4 d-block mb-3"></i>
                 <p class="mb-3">Aucune figurine pour le moment. Soyez le premier à partager la vôtre !</p>
                 <a class="btn btn-brand" href="{{ path('app_figurine_create') }}">Créer une figurine</a>
@@ -40,7 +41,7 @@
                             </p>
                             <p class="small mb-0 d-flex align-items-center gap-2">
                                 <img class="author-avatar" src="{{ figurine.user.imageName }}" alt="" referrerpolicy="no-referrer"
-                                     onerror="this.onerror=null;this.src='https://ui-avatars.com/api/?name={{ figurine.user.fullName|url_encode }}&background=3f6fd8&color=fff&size=64';">
+                                     onerror="this.onerror=null;this.src='https://ui-avatars.com/api/?name={{ figurine.user.fullName|url_encode }}&background=08a9ad&color=fff&size=64';">
                                 <span>{{ figurine.user.firstname }} {{ figurine.user.lastname }}</span>
                             </p>
                         </div>

@@ -41,7 +41,7 @@ class AppFixtures extends Fixture
         $usersData = [
             'amina' => ['Amina', 'Diallo', 'amina@figurinevie.be', 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80'],
             'lucas' => ['Lucas', 'Martin', 'lucas@figurinevie.be', 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80'],
-            'trinitas' => ['Trinitas', 'Mudeyi', 'trinitas@figurinevie.be', 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80'],
+            'trinitas' => ['Trinitas', 'Ntirampeba', 'trinitas@figurinevie.be', 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80'],
         ];
 
         $users = [];

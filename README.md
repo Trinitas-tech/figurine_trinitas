@@ -4,7 +4,7 @@ Application web Symfony permettant aux collectionneurs de partager et d'organise
 les photos de leurs figurines. Projet réalisé dans le cadre de la formation
 développeur web (Cfitech).
 
-- **Front-end** : Twig + Bootstrap 5 + CSS personnalisé (`assets/styles/app.css`)
+- **Front-end** : Twig + Bootstrap 5 + CSS personnalisé (`assets/styles/app.css`), charte graphique reprise du portfolio de l'auteur (Poppins, dégradé nuit → turquoise → citron, cartes translucides, mise en page pleine largeur)
 - **Back-end** : Symfony 7.4 (PHP 8.3)
 - **Base de données** : MySQL (`figurine_trinitas_db`)
 

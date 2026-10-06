@@ -129,13 +129,9 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'amina@figurinevie.be','[]','$2y$13$PzSEegbd8ZLPTE6W8GQfBuDvY4og.iO2LCevRNhpfJuT.0vbe8IH2','Amina','Diallo','https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80',1,'2026-10-06 08:07:16','2026-10-06 08:07:16'),(2,'lucas@figurinevie.be','[]','$2y$13$coKZcLdDSeAIP7ABWySUiuZ1ShTC3xZ36I4MjOINKH5LsPuV1jOwG','Lucas','Martin','https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80',1,'2026-10-06 08:07:17','2026-10-06 08:07:17'),(3,'trinitas@figurinevie.be','[]','$2y$13$yvay86wknQmfANyRPidGsO1Gdp3IG1r4QbaAkt0v7Azyx1XUZHXbC','Trinitas','Mudeyi','https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80',1,'2026-10-06 08:07:18','2026-10-06 08:07:18');
+INSERT INTO `users` VALUES (1,'amina@figurinevie.be','[]','$2y$13$PzSEegbd8ZLPTE6W8GQfBuDvY4og.iO2LCevRNhpfJuT.0vbe8IH2','Amina','Diallo','https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80',1,'2026-10-06 08:07:16','2026-10-06 08:07:16'),(2,'lucas@figurinevie.be','[]','$2y$13$coKZcLdDSeAIP7ABWySUiuZ1ShTC3xZ36I4MjOINKH5LsPuV1jOwG','Lucas','Martin','https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80',1,'2026-10-06 08:07:17','2026-10-06 08:07:17'),(3,'trinitas@figurinevie.be','[]','$2y$13$yvay86wknQmfANyRPidGsO1Gdp3IG1r4QbaAkt0v7Azyx1XUZHXbC','Trinitas','Ntirampeba','https://s.widget-club.com/images/YyiR86zpwIMIfrCZoSs4ulVD9RF3/db7b9bf4a9023df64fe7bf1dbd97f711/5f3d76d5ffb06ebfc51b85ffcb8253d5.jpg',1,'2026-10-06 08:07:18','2026-10-06 08:38:38');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping routines for database 'figurine_trinitas_db'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -146,4 +142,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-10-06 10:07:18
+-- Dump completed on 2026-10-06 10:46:47
