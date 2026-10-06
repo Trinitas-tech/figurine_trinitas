@@ -108,7 +108,7 @@ Les photos proviennent de Wikimedia Commons et sont utilisées selon leur licenc
 | Paysage de Rutana | Burundi_Rutana.jpg | Kat257 | CC BY-SA 4.0 |
 | Timbre Louis Rwagasore 1963 | BDI_1963_MiNr0044A_pm_B002.jpg | Poste du Royaume du Burundi | Domaine public |
 | Cathédrale Regina Mundi | Cathédrale_Regina_Mundi_de_Bujumbura,_2006.jpg | inconnu | Domaine public |
-| Statue du prince Rwagasore (accueil) | Statut_du_prince_Louis_Rwagasore.jpg | Arthur Nkunzimana | CC BY-SA 4.0 |
+| Timbre Louis Rwagasore 1966 (accueil) | BDI_1966_MiNr0214_pm_B002a.jpg | Poste du Royaume du Burundi | Domaine public |
 
 Le portrait de Melchior Ndadaye provient de burundi-forum.org (archives Apollinaire Ndayikeze, 2019)
 et la carte du Burundi de img.magnific.com.
